@@ -1,23 +1,30 @@
 import requests
 from pprint import pprint
 from time import ctime
-
+import json
 # An API key is required to access the Neo API. Get your API key from: https://api.nasa.gov/
-api_key = 'your_api_key_here'
+api_key = 'ir7aS9vMheiAFK9aK2flJTJzQHezYd8dXpc2Bcg8'
 
 # URL for Neo API
-start_date = '2020-06-06'
-end_date = '2020-06-07'
+start_date = '2024-01-22'
+end_date = '2024-01-22'
 url = f'https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={api_key}'
 
 # Making a request and getting data
 r = requests.get(url)
 data = r.json()
+# Specify the file path
+file_path = "example.json"
 
+# Open the file in write mode
+with open(file_path, 'w') as json_file:
+    # Write the data to the file
+    json.dump(data, json_file)
 # Extracting asteroid data
 neo = data['near_earth_objects']
+print(data)
 for near in neo[start_date]:
-    print(near['id'], near['name'], near['absolute_magnitude_h'])
+    print(f"{near['id']}, {near['name']}, {near['absolute_magnitude_h']}\n")
 
 # Asteroids by index in the list
 first = neo[start_date][0]
