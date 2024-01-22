@@ -2,13 +2,14 @@ import requests
 from pprint import pprint
 from time import ctime
 import json
+from datetime import *
 # An API key is required to access the Neo API. Get your API key from: https://api.nasa.gov/
 api_key = 'ir7aS9vMheiAFK9aK2flJTJzQHezYd8dXpc2Bcg8'
 
 # URL for Neo API
-start_date = '2024-01-22'
-end_date = '2024-01-22'
-url = f'https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={api_key}'
+current_date = datetime.now().strftime('%Y-%m-%d')
+start_date=current_date
+url = f'https://api.nasa.gov/neo/rest/v1/feed?start_date={current_date}&end_date={current_date}&api_key={api_key}'
 
 # Making a request and getting data
 r = requests.get(url)
@@ -33,8 +34,7 @@ print(first)
 # Finding info by name
 all_asteroids = neo[start_date]
 for asteroid in all_asteroids:
-    if asteroid['name'] == '163348 (2002 NN4)':
-        pprint(asteroid)
+        print(f"{asteroid['close_approach_data']}\n--------------------------------------------------")
         break
 
 # Asteroid name
@@ -65,7 +65,9 @@ close_data = asteroid['close_approach_data']
 pprint(close_data)
 
 date = close_data[0]['epoch_date_close_approach']
+print(f"Epoch Date: {date}")
 print(ctime(date))
+
 
 # Miss distance
 miss_distance = close_data[0]['miss_distance']
