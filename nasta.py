@@ -4,7 +4,7 @@ from time import ctime
 import json
 from datetime import *
 # An API key is required to access the Neo API. Get your API key from: https://api.nasa.gov/
-api_key = 'ir7aS9vMheiAFK9aK2flJTJzQHezYd8dXpc2Bcg8'
+api_key = ''
 
 # URL for Neo API
 current_date = datetime.now().strftime('%Y-%m-%d')
