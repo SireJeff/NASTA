@@ -25,11 +25,7 @@ command_options = ["Create Config","remaining Tokens","get expired","sirejeffish
 
 # A dictionary that maps domain names to their API keys
 # This allows looking up the right key for each domain
-DOMAIN_KEYS = {
 
-  # The key for jeff.online domain  
-  'paneux.online': 'WRi1Wu892_vBnfkKqsjXBQj9RsryEyPESOuVtUeJ'
-}
 # Create an instance of the Telegram bot with our access token
 # testcenter api
 bot = telebot.TeleBot('7055187634:AAHPc4WbxQF0epQ6gIndWd3DPZC1qomLDo0')
