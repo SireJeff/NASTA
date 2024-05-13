@@ -31,7 +31,7 @@ def send_reminder():
         event_datetime = datetime.datetime.strptime(datetime_str, "%Y-%m-%d %H:%M")
         if event_datetime >= current_datetime:
             time_until_event = event_datetime - current_datetime
-            messagee +=f"{event} : {time_until_event.days} روز و {time_until_event.seconds // 3600} ساعت دیگر| راس {event_datetime.strftime('%H:%M')} |در تاریخ {event_datetime.strftime('%Y-%m-%d')}\n"
+            messagee +=f"{event} : {time_until_event.days} روز و {time_until_event.seconds // 3600} ساعت دیگر| راس {event_datetime.strftime('%H:%M')} |در تاریخ {event_datetime.strftime('%Y-%m-%d')}\n\n"
     if response.status_code == 200:
         data = response.json()
         messagee+="\nپا بزن شریف ام‌آی‌تی ایرانه\n\n گنجینه معرفت:\n"
