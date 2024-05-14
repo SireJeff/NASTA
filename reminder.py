@@ -41,13 +41,25 @@ def send_reminder():
 
     bot.send_message(group_id , messagee)  # Replace with your Telegram group ID
 
-# Function to send reminders for upcoming events
 send_reminder()
-# Schedule the reminder to be sent every day at 8:00 AM (GMT+03:30)
+
+# Schedule the reminder to be sent every 6 hours
 schedule.every(6).hours.do(send_reminder)  # Adjust the time according to your timezone
 
-# Main loop to keep the script running
+# Function to start the bot polling in a separate thread
+def bot_polling():
+    while True:
+        try:
+            bot.polling()
+        except Exception as e:
+            print(e)
+            time.sleep(10)  # Sleep for a while before polling again in case of exceptions
+
+# Start the bot polling in a separate thread
+bot_thread = threading.Thread(target=bot_polling)
+bot_thread.start()
+
+# Main loop to run schedule
 while True:
-    bot.polling()
     schedule.run_pending()
     time.sleep(1)
