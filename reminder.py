@@ -1,8 +1,10 @@
+import threading
 import schedule
 import time
 import datetime
 import telebot
 import requests
+
 # Initialize the Telegram Bot with your API token
 bot = telebot.TeleBot('6715565004:AAHV7PIs63ARmF_tOFvupO0tkvt7ZkUUgps')
 
@@ -40,26 +42,19 @@ def send_reminder():
         messagee+=data['result']['person']
 
     bot.send_message(group_id , messagee)  # Replace with your Telegram group ID
+def run_schedule():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
-send_reminder()
+
 
 # Schedule the reminder to be sent every 6 hours
 schedule.every(6).hours.do(send_reminder)  # Adjust the time according to your timezone
 
-# Function to start the bot polling in a separate thread
-def bot_polling():
-    while True:
-        try:
-            bot.polling()
-        except Exception as e:
-            print(e)
-            time.sleep(10)  # Sleep for a while before polling again in case of exceptions
+# Start the scheduling logic in a separate thread
+schedule_thread = threading.Thread(target=run_schedule)
+schedule_thread.start()
 
-# Start the bot polling in a separate thread
-bot_thread = threading.Thread(target=bot_polling)
-bot_thread.start()
-
-# Main loop to run schedule
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# Run the bot polling in the main thread
+bot.polling()
