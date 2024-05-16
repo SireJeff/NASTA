@@ -49,7 +49,7 @@ def run_schedule():
         time.sleep(1)
 
 
-
+send_reminder()
 # Schedule the reminder to be sent every 6 hours
 schedule.every(6).hours.do(send_reminder)  # Adjust the time according to your timezone
 
