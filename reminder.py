@@ -11,7 +11,7 @@ bot = telebot.TeleBot('6715565004:AAHV7PIs63ARmF_tOFvupO0tkvt7ZkUUgps')
 
 url = "https://api.keybit.ir/hadis"
 
-response = requests.get(url)
+
 group_id = -1001788579325
 
 
@@ -34,6 +34,7 @@ def send_reminder():
         if event_datetime >= current_datetime:
             time_until_event = event_datetime - current_datetime
             messagee +=f"{event} : {time_until_event.days} روز و {time_until_event.seconds // 3600} ساعت دیگر| راس {event_datetime.strftime('%H:%M')} |در تاریخ {event_datetime.strftime('%Y-%m-%d')}\n\n"
+    response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
         messagee+="\nپا بزن شریف ام‌آی‌تی ایرانه\n\n گنجینه معرفت:\n"
