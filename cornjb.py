@@ -6,7 +6,7 @@ from pprint import pprint
 from datetime import datetime, timedelta
 
 # An API key is required to access the Neo API. Get your API key from: https://api.nasa.gov/
-api_key = 'ir7aS9vMheiAFK9aK2flJTJzQHezYd8dXpc2Bcg8'
+api_key = ''
 
 def get_neo_data():
     # Specify the start and end dates for the day it's being run
